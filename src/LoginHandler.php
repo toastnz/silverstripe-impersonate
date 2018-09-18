@@ -96,20 +96,7 @@ class LoginHandler extends RequestHandler
      */
     public function login()
     {
-        // Make sure we don't have a user already logged in.
-        if (Security::getCurrentUser()) {
-            return [
-                'Form' => $this->LoginAsSomeoneElseForm()
-            ];
-        }
-
         return ['Form' => $this->Form()];
-
-
-        // This will redirect the user to the Auth0 Form
-        $auth0 = Injector::inst()->get(Auth0::class);
-        $auth0->login();
-        return [];
     }
 
     /**
@@ -118,12 +105,7 @@ class LoginHandler extends RequestHandler
      */
     public function Form()
     {
-        $backURL = $this->getRequest()->getVar('BackURL');
-
-        return LoginForm::create(
-            $this,
-            'Form'
-        );
+        return LoginForm::create($this, 'Form');
     }
 
     /**

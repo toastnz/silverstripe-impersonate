@@ -13,7 +13,7 @@ use SilverStripe\Security\LoginForm as SSLoginForm;
 use SilverStripe\Security\Member;
 
 /**
- * Handle login requests from MaximeRainville\Auth0\Authenticator.
+ * Handle login requests from MaximeRainville\Impersonate\Authenticator.
  *
  * @internal Mostly copied from the regular LoginHandler. Unfortunately, the regular login handler is tightly coupled
  * with the MemberLoginForm, which makes our work a bit more difficult here.

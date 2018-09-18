@@ -6,6 +6,7 @@ use SilverStripe\Security\Member;
 use SilverStripe\Core\Extensible;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\ORM\ValidationResult;
+use SilverStripe\Security\MemberAuthenticator\LogoutHandler;
 
 class Authenticator implements SSAuthenticator
 {
