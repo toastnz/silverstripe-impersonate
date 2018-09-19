@@ -10,7 +10,6 @@ use SilverStripe\Security\MemberAuthenticator\LogoutHandler;
 
 class Authenticator implements SSAuthenticator
 {
-
     use Extensible;
 
     /**
@@ -21,6 +20,49 @@ class Authenticator implements SSAuthenticator
     {
         // Bitwise-OR of all the supported services in this Authenticator, to make a bitmask
         return SSAuthenticator::LOGIN | SSAuthenticator::LOGOUT;
+    }
+
+    /**
+     * @inheritdoc
+     * @param string $link
+     * @return LoginHandler
+     */
+    public function getLoginHandler($link)
+    {
+        return LoginHandler::create($link, $this);
+    }
+
+    /**
+     * @inheritdoc
+     * @param string $link
+     * @return LogoutHandler
+     */
+    public function getLogoutHandler($link)
+    {
+        return LogoutHandler::create($link, $this);
+    }
+
+
+    /**
+     * @inheritdoc
+     * @param string $link
+     * @return mixed
+     */
+    public function getLostPasswordHandler($link)
+    {
+        // We don't support lost password
+        return null;
+    }
+
+    /**
+     * @inheritdoc
+     * @param string $link
+     * @return mixed
+     */
+    public function getChangePasswordHandler($link)
+    {
+        // Not needed
+        return null;
     }
 
 
@@ -60,47 +102,5 @@ class Authenticator implements SSAuthenticator
         ));
 
         return $result;
-    }
-
-    /**
-     * @inheritdoc
-     * @param string $link
-     * @return mixed
-     */
-    public function getLostPasswordHandler($link)
-    {
-        // We don't support lost password
-        return null;
-    }
-
-    /**
-     * @inheritdoc
-     * @param string $link
-     * @return mixed
-     */
-    public function getChangePasswordHandler($link)
-    {
-        // Not needed
-        return null;
-    }
-
-    /**
-     * @inheritdoc
-     * @param string $link
-     * @return LoginHandler
-     */
-    public function getLoginHandler($link)
-    {
-        return LoginHandler::create($link, $this);
-    }
-
-    /**
-     * @inheritdoc
-     * @param string $link
-     * @return LogoutHandler
-     */
-    public function getLogoutHandler($link)
-    {
-        return LogoutHandler::create($link, $this);
     }
 }

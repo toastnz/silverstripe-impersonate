@@ -45,18 +45,8 @@ class LoginHandler extends RequestHandler
      */
     private static $allowed_actions = [
         'login',
-        'logout',
-        'callback',
-        'doLogin',
         'Form'
     ];
-
-    /**
-     * Whatever we allow registration without any pre-condition. Defaults to `FALSE`.
-     * If set to `TRUE` anyone can use the Auth0 authentication request to create an account.
-     * @var bool
-     */
-    private static $allow_public_registration = false;
 
     /**
      * @var string Called link on this handler
@@ -129,24 +119,6 @@ class LoginHandler extends RequestHandler
             401,
             'Could not log you in.'
         );
-    }
-
-    /**
-     * Display a Form inviting the user to login as someone else.
-     * @return Form
-     */
-    public function LoginAsSomeoneElseForm()
-    {
-        return LoginAsSomeoneElseForm::create(
-            $this,
-            'LoginAsSomeoneElseForm',
-            get_class($this->authenticator)
-        );
-    }
-
-    public function getReturnReferer()
-    {
-        return $this->link();
     }
 
     /**

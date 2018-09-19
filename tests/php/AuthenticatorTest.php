@@ -1,6 +1,6 @@
 <?php
 
-namespace MaximeRainville\Auth0\Tests;
+namespace MaximeRainville\Impersonate\Tests;
 
 use MaximeRainville\Auth0\LoginHandler;
 use SilverStripe\Control\HTTPRequest;
